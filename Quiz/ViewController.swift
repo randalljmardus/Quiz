@@ -66,13 +66,16 @@ class ViewController: UIViewController {
     
     func animateLabelTransitions() {
         
+        //Force any outstanding layout changes to occur
+        view.layoutIfNeeded()
+        
         //animate the alpha
         //and the center X constraints
         let screenWidth = view.frame.width
         self.nextQuestionLabelCenterXConstraint.constant = 0
         self.currentQuestionLabelCenterXConstraint.constant += screenWidth
         
-        UIView.animateWithDuration(0.5, delay: 0, options: [], animations: {
+        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveLinear], animations: {
             self.currentQuestionLabel.alpha = 0
             self.nextQuestionLabel.alpha = 1
             
